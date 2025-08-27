@@ -101,4 +101,4 @@ This project is private and proprietary to Perla Jacinto.
 For questions or support, please contact the development team.
 \`\`\`
 
-```gitignore file="" isHidden
+\`\`\`gitignore file="" isHidden
