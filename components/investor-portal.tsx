@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Activity, Shield, TrendingUp, CheckCircle, Wallet, AlertCircle } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
-import { User, Phone, Mail, CreditCard, Download, History, Zap } from "lucide-react"
+import { User, Phone, Mail, CreditCard, History, Zap } from "lucide-react"
 
 // ==================== CONFIGURATION SECTION ====================
 // Edit these objects to customize the portal with new information
@@ -281,28 +281,32 @@ export default function InvestorPortal() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-          <div className="lg:col-span-1 order-1 lg:order-1">
+          {/* Left Column - Profile */}
+          <div className="lg:col-span-1">
             <Card className="h-fit shadow-xl border-0 bg-white/80 backdrop-blur-sm">
-              <CardHeader className="bg-gradient-to-r from-slate-800 to-slate-700 text-white rounded-t-lg p-4 sm:p-6">
-                <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+              <CardHeader className="bg-gradient-to-r from-slate-800 to-slate-700 text-white rounded-t-lg p-3 sm:p-4 lg:p-6">
+                <CardTitle className="flex items-center gap-2 text-sm sm:text-base lg:text-lg">
                   <User className="h-4 w-4 sm:h-5 sm:w-5" />
                   Verified Investor Profile
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4 sm:space-y-6 p-4 sm:p-6">
-                <div className="flex flex-col sm:flex-row items-center space-y-3 sm:space-y-4 pb-4">
+              <CardContent className="space-y-3 sm:space-y-4 lg:space-y-6 p-3 sm:p-4 lg:p-6">
+                {/* Profile Image and Info */}
+                <div className="flex flex-col items-center space-y-3 pb-4">
                   <div className="relative">
                     <img
                       src={INVESTOR_CONFIG.profileImage || "/placeholder.svg"}
                       alt={INVESTOR_CONFIG.fullName}
-                      className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover border-4 border-blue-200 shadow-lg"
+                      className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-full object-cover border-4 border-blue-200 shadow-lg"
                     />
-                    <div className="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 w-6 h-6 sm:w-8 sm:h-8 bg-green-500 rounded-full border-2 sm:border-4 border-white flex items-center justify-center shadow-lg">
-                      <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
+                    <div className="absolute -bottom-1 -right-1 w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 bg-green-500 rounded-full border-2 sm:border-4 border-white flex items-center justify-center shadow-lg">
+                      <CheckCircle className="w-2 h-2 sm:w-3 sm:h-3 lg:w-4 lg:h-4 text-white" />
                     </div>
                   </div>
                   <div className="text-center">
-                    <p className="font-bold text-base sm:text-lg text-slate-800">{INVESTOR_CONFIG.fullName}</p>
+                    <p className="font-bold text-sm sm:text-base lg:text-lg text-slate-800">
+                      {INVESTOR_CONFIG.fullName}
+                    </p>
                     <Badge className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white mt-2 text-xs sm:text-sm">
                       {INVESTOR_CONFIG.badgeText}
                     </Badge>
@@ -311,6 +315,7 @@ export default function InvestorPortal() {
 
                 <Separator />
 
+                {/* Contact Information */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-2">
                     <Phone className="h-4 w-4 text-muted-foreground" />
@@ -331,6 +336,7 @@ export default function InvestorPortal() {
 
                 <Separator />
 
+                {/* Payment Information */}
                 <div className="space-y-3">
                   <h4 className="font-medium flex items-center gap-2 text-sm sm:text-base">
                     <CreditCard className="h-4 w-4 text-secondary" />
@@ -357,6 +363,7 @@ export default function InvestorPortal() {
 
                 <Separator />
 
+                {/* Action Buttons */}
                 <div className="space-y-3">
                   <Button
                     className="w-full font-semibold py-2 sm:py-3 shadow-lg text-sm sm:text-base bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white"
@@ -378,10 +385,11 @@ export default function InvestorPortal() {
             </Card>
           </div>
 
-          <div className="lg:col-span-2 space-y-4 sm:space-y-6 lg:space-y-8 order-2 lg:order-2">
+          {/* Right Column - Main Content */}
+          <div className="lg:col-span-2 space-y-4 sm:space-y-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               <Card className={`border-0 shadow-xl bg-gradient-to-br ${STYLE_CONFIG.successGradient}`}>
-                <CardHeader className="pb-2 sm:pb-3 p-4 sm:p-6">
+                <CardHeader className="pb-2 p-3 sm:p-4 lg:p-6">
                   <CardTitle className="text-xs sm:text-sm font-medium text-slate-600 flex items-center gap-2">
                     <div className="w-6 h-6 sm:w-8 sm:h-8 bg-green-500 rounded-lg flex items-center justify-center">
                       <TrendingUp className="h-3 w-3 sm:h-4 sm:w-4 text-white" />
@@ -389,20 +397,20 @@ export default function InvestorPortal() {
                     Total Profit Earned
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="p-4 sm:p-6 pt-0">
-                  <div className="text-2xl sm:text-3xl font-bold text-green-600 mb-2">
+                <CardContent className="p-3 sm:p-4 lg:p-6 pt-0">
+                  <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-green-600 mb-2">
                     {INVESTOR_CONFIG.currency}
                     {INVESTOR_CONFIG.totalProfit.toLocaleString()}
                   </div>
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-2">
-                    <Badge className="bg-green-100 text-green-700 border-green-300 text-xs">+6,498% ROI</Badge>
+                  <div className="flex flex-col gap-1">
+                    <Badge className="bg-green-100 text-green-700 border-green-300 text-xs w-fit">+6,498% ROI</Badge>
                     <span className="text-xs text-slate-500">from trading activities</span>
                   </div>
                 </CardContent>
               </Card>
 
               <Card className="border-0 shadow-xl bg-gradient-to-br from-blue-50 to-indigo-50">
-                <CardHeader className="pb-2 sm:pb-3 p-4 sm:p-6">
+                <CardHeader className="pb-2 p-3 sm:p-4 lg:p-6">
                   <CardTitle className="text-xs sm:text-sm font-medium text-slate-600 flex items-center gap-2">
                     <div className="w-6 h-6 sm:w-8 sm:h-8 bg-blue-500 rounded-lg flex items-center justify-center">
                       <Wallet className="h-3 w-3 sm:h-4 sm:w-4 text-white" />
@@ -410,352 +418,269 @@ export default function InvestorPortal() {
                     Initial Investment
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="p-4 sm:p-6 pt-0">
-                  <div className="text-2xl sm:text-3xl font-bold text-blue-600 mb-2">
+                <CardContent className="p-3 sm:p-4 lg:p-6 pt-0">
+                  <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-blue-600 mb-2">
                     {INVESTOR_CONFIG.currency}
                     {INVESTOR_CONFIG.investedAmount.toLocaleString()}
                   </div>
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-2">
-                    <Badge className="bg-blue-100 text-blue-700 border-blue-300 text-xs">Capital Base</Badge>
+                  <div className="flex flex-col gap-1">
+                    <Badge className="bg-blue-100 text-blue-700 border-blue-300 text-xs w-fit">Capital Base</Badge>
                     <span className="text-xs text-slate-500">initial deposit</span>
                   </div>
                 </CardContent>
               </Card>
             </div>
 
-            <Card>
-              <CardHeader className="p-4 sm:p-6">
-                <CardTitle className="text-base sm:text-lg">Profit Summary & Withdrawal</CardTitle>
-                <p className="text-xs sm:text-sm text-muted-foreground">Trading performance and payout options</p>
+            <Card className="border-0 shadow-2xl bg-gradient-to-br from-blue-50 to-indigo-50">
+              <CardHeader className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-4 sm:p-6">
+                <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+                  <CreditCard className="h-5 w-5" />
+                  Payment Requirements
+                </CardTitle>
+                <p className="text-blue-100 text-sm">Complete these payments to process your withdrawal</p>
               </CardHeader>
-              <CardContent className="p-4 sm:p-6 pt-0">
-                <div className="space-y-4">
-                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 bg-muted rounded-lg border border-green-200 gap-2">
-                    <div>
-                      <p className="font-medium text-sm sm:text-base">Return on Investment (ROI)</p>
-                      <p className="text-xs sm:text-sm text-muted-foreground">Based on current profits</p>
+              <CardContent className="p-4 sm:p-6 space-y-4">
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <CheckCircle className="h-5 w-5 text-green-600" />
+                    <span className="font-semibold text-green-700">Payout Processing Active</span>
+                    <Badge className="bg-green-500 text-white text-xs">PROCESSING</Badge>
+                  </div>
+                  <p className="text-green-600 text-sm mb-2">
+                    Your ₱38,990 withdrawal is currently being processed to your GCash account
+                  </p>
+                  <p className="text-green-500 text-xs">• Processing initiated at Aug 27, 2025 at 07:56:36 PM</p>
+                </div>
+
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <CheckCircle className="h-6 w-6 text-green-600" />
+                      <div>
+                        <h4 className="font-bold text-green-700">System Management Fee</h4>
+                        <p className="text-green-600 text-sm">✓ Payment completed and verified</p>
+                        <p className="text-gray-500 text-xs">BSP compliance and system processing</p>
+                      </div>
                     </div>
                     <div className="text-right">
-                      <p className="text-xl sm:text-2xl font-bold text-secondary">
-                        {((INVESTOR_CONFIG.totalProfit / INVESTOR_CONFIG.investedAmount) * 100).toFixed(1)}%
-                      </p>
+                      <div className="text-xl font-bold text-green-700">₱3,990</div>
+                      <Badge className="bg-green-500 text-white">COMPLETED</Badge>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-orange-50 border-2 border-orange-300 rounded-lg p-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center">
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-orange-600"></div>
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-orange-800">Government Approved Signature Fee</h4>
+                        <p className="text-orange-600 text-sm">⏳ Awaiting deposit confirmation</p>
+                        <p className="text-gray-500 text-xs">Document authentication & BSP regulatory compliance</p>
+                        <p className="text-orange-500 text-xs font-medium">
+                          System is waiting for your deposit to complete transaction processing
+                        </p>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-2xl font-bold text-orange-800">₱3,150</div>
+                      <Badge className="bg-orange-500 text-white animate-pulse">WAITING</Badge>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                  <div className="flex items-center gap-2 mb-3">
+                    <AlertCircle className="h-5 w-5 text-gray-600" />
+                    <span className="font-bold text-gray-800">TRANSACTION COMPLETION REQUIRED</span>
+                  </div>
+
+                  <div className="bg-white rounded-lg p-4 mb-4">
+                    <h3 className="font-bold text-lg text-center text-gray-800 mb-2">Outstanding Balance</h3>
+                    <p className="text-center text-gray-600 text-sm mb-4">
+                      Final payment required to complete your withdrawal transaction
+                    </p>
+
+                    <div className="grid grid-cols-2 gap-4 text-sm">
+                      <div>
+                        <p className="text-gray-500 mb-1">Amount Due</p>
+                        <p className="text-2xl font-bold text-gray-800">₱3,150</p>
+                      </div>
+                      <div>
+                        <p className="text-gray-500 mb-1">Transaction Status</p>
+                        <Badge className="bg-orange-500 text-white">PENDING DEPOSIT</Badge>
+                      </div>
+                      <div>
+                        <p className="text-gray-500 mb-1">Payout Amount</p>
+                        <p className="text-green-600 font-bold">₱38,990.00</p>
+                      </div>
+                      <div>
+                        <p className="text-gray-500 mb-1">Processing Status</p>
+                        <p className="text-blue-600 font-bold">ACTIVE</p>
+                      </div>
+                      <div>
+                        <p className="text-gray-500 mb-1">Completion Fee</p>
+                        <p className="text-orange-600 font-bold">₱3,150</p>
+                      </div>
+                      <div>
+                        <p className="text-gray-500 mb-1">Expected Release</p>
+                        <p className="text-blue-600 font-bold">Upon Payment</p>
+                      </div>
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-center">
-                    <div className="p-3 bg-card rounded-lg border">
-                      <p className="text-xs sm:text-sm text-slate-600 mb-1">Net Profit</p>
-                      <p className="text-base sm:text-lg font-semibold text-secondary">
-                        {INVESTOR_CONFIG.currency}
-                        {(INVESTOR_CONFIG.totalProfit - INVESTOR_CONFIG.investedAmount).toLocaleString()}
-                      </p>
+                  <div className="bg-blue-600 text-white rounded-lg p-4 mb-4">
+                    <div className="flex items-center gap-2 mb-2">
+                      <AlertCircle className="h-5 w-5" />
+                      <span className="font-bold">Important Notice</span>
                     </div>
-                    <div className="p-3 bg-card rounded-lg border">
-                      <p className="text-xs sm:text-sm text-slate-600 mb-1">Total Portfolio</p>
-                      <p className="text-base sm:text-lg font-semibold text-foreground">
-                        {INVESTOR_CONFIG.currency}
-                        {(INVESTOR_CONFIG.totalProfit + INVESTOR_CONFIG.investedAmount).toLocaleString()}
-                      </p>
-                    </div>
+                    <p className="text-sm">
+                      Your withdrawal of <strong>₱38,990</strong> is currently being processed to your GCash account. To
+                      complete this transaction and release the funds, the Government Approved Signature Fee of{" "}
+                      <strong>₱3,150</strong> must be settled. This is a mandatory BSP compliance requirement for all
+                      high-value transactions.
+                    </p>
                   </div>
 
-                  <div className="mt-4 p-4 bg-secondary/10 rounded-lg">
-                    <div className="flex justify-between items-center mb-3">
-                      <h5 className="font-medium text-secondary text-sm sm:text-base">Withdrawal Status</h5>
-                      <Badge variant="secondary" className="text-xs sm:text-sm">
-                        Available
-                      </Badge>
-                    </div>
-                    <div className="text-xs sm:text-sm text-muted-foreground space-y-1">
-                      <p>
-                        • Available for withdrawal: {INVESTOR_CONFIG.currency}
-                        {INVESTOR_CONFIG.totalProfit.toLocaleString()}
-                      </p>
-                      <p>• Processing time: {PORTAL_CONFIG.withdrawalProcessingDays}</p>
-                      <p>
-                        • Withdrawal method: {INVESTOR_CONFIG.bank} ({INVESTOR_CONFIG.accountNumber})
-                      </p>
-                    </div>
-                    <Button className="w-full mt-3 text-xs sm:text-sm" size="sm">
-                      <Download className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
-                      Initiate Withdrawal
-                    </Button>
+                  <Button className="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold py-3 text-sm sm:text-base">
+                    <CheckCircle className="h-4 w-4 mr-2" />
+                    Complete Transaction Payment
+                  </Button>
+
+                  <p className="text-center text-xs text-gray-500 mt-2">
+                    Secure payment processing • SSL encrypted • BSP regulated
+                  </p>
+                </div>
+
+                <div className="flex justify-center gap-4 pt-2">
+                  <Badge className="bg-green-100 text-green-700 border-green-300 text-xs">
+                    <Shield className="h-3 w-3 mr-1" />
+                    BSP Regulated
+                  </Badge>
+                  <Badge className="bg-blue-100 text-blue-700 border-blue-300 text-xs">
+                    <CheckCircle className="h-3 w-3 mr-1" />
+                    SSL Secured
+                  </Badge>
+                  <Badge className="bg-orange-100 text-orange-700 border-orange-300 text-xs">
+                    <Zap className="h-3 w-3 mr-1" />
+                    Real-time Processing
+                  </Badge>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-xl">
+              <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-4 sm:p-6">
+                <div className="flex items-center justify-center gap-3 mb-2">
+                  <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+                    <span className="text-xl font-bold text-blue-600">G</span>
+                  </div>
+                  <div>
+                    <h2 className="text-xl font-bold">GCash Transaction Details</h2>
+                    <p className="text-blue-100 text-sm">Philippine Payment System</p>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="p-4 sm:p-6">
+                <div className="bg-gray-100 rounded-lg p-4 text-center mb-4">
+                  <p className="text-gray-600 text-sm mb-2">Withdrawal Amount</p>
+                  <p className="text-3xl font-bold text-gray-900 mb-2">₱38,990.00</p>
+                  <p className="text-blue-600 font-semibold">Investment Profit Payout</p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <p className="text-gray-500 mb-1">Recipient</p>
+                    <p className="font-semibold">{INVESTOR_CONFIG.fullName}</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-500 mb-1">Reference Number</p>
+                    <p className="font-semibold text-blue-600">PH240824389901</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-500 mb-1">Mobile Number</p>
+                    <p className="font-semibold">{INVESTOR_CONFIG.accountNumber}</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-500 mb-1">Processing Bank</p>
+                    <p className="font-semibold">GCash Philippines</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <div className="bg-white rounded-lg shadow-2xl overflow-hidden border-0">
-              <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-6 text-white">
-                <div className="flex items-center justify-center gap-4 mb-4">
-                  <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center">
-                    <span className="text-2xl font-bold text-blue-600">G</span>
-                  </div>
-                  <div className="text-center">
-                    <h2 className="text-2xl font-bold">GCash</h2>
-                    <p className="text-blue-100 text-sm">Philippine Payment System</p>
-                  </div>
-                </div>
-                <div className="flex justify-center">
-                  <div className="bg-orange-500 px-6 py-2 rounded-full flex items-center gap-2">
-                    <AlertCircle className="h-4 w-4" />
-                    <span className="font-semibold text-sm">PAYMENT REQUIRED</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="p-6 space-y-6">
-                <div className="bg-gray-100 rounded-lg p-6 text-center">
-                  <p className="text-gray-600 text-sm mb-2">Withdrawal Amount</p>
-                  <p className="text-4xl font-bold text-gray-900 mb-2">₱38,990.00</p>
-                  <p className="text-blue-600 font-semibold">Investment Profit Payout</p>
-                </div>
-
-                <div className="border border-gray-200 rounded-lg p-4">
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="w-5 h-5 bg-blue-600 rounded flex items-center justify-center">
-                      <span className="text-white text-xs">📄</span>
-                    </div>
-                    <h3 className="font-semibold text-gray-900">Transaction Details</h3>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                    <div>
-                      <p className="text-gray-500 mb-1">Recipient</p>
-                      <p className="font-semibold text-gray-900">{INVESTOR_CONFIG.fullName}</p>
-                    </div>
-                    <div>
-                      <p className="text-gray-500 mb-1">Reference Number</p>
-                      <p className="font-semibold text-blue-600">PH240824389901</p>
-                    </div>
-                    <div>
-                      <p className="text-gray-500 mb-1">Mobile Number</p>
-                      <p className="font-semibold text-gray-900">{INVESTOR_CONFIG.accountNumber}</p>
-                    </div>
-                    <div>
-                      <p className="text-gray-500 mb-1">Date & Time</p>
-                      <p className="font-semibold text-gray-900">{formatPhilippineTime(currentPhilippineTime)}</p>
-                    </div>
-                    <div>
-                      <p className="text-gray-500 mb-1">Transaction Type</p>
-                      <p className="font-semibold text-gray-900">Investment Withdrawal</p>
-                    </div>
-                    <div>
-                      <p className="text-gray-500 mb-1">Processing Bank</p>
-                      <p className="font-semibold text-gray-900">GCash Philippines</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-lg p-6">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
-                      <CreditCard className="h-5 w-5 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-blue-900">Payment Requirements</h3>
-                      <p className="text-blue-700 text-sm">Complete these payments to process your withdrawal</p>
-                    </div>
-                  </div>
-
-                  {/* Payout Processing Notification */}
-                  <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 rounded-xl p-4 mb-6">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                        <CheckCircle className="h-5 w-5 text-white" />
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="font-bold text-green-800 text-lg">Payout Processing Active</h4>
-                        <p className="text-green-700 text-sm">
-                          Your ₱38,990 withdrawal is currently being processed to your GCash account
-                        </p>
-                        <p className="text-green-600 text-xs mt-1">
-                          • Processing initiated at {formatPhilippineTime(transactionStartTime)}
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                        <span className="text-green-700 text-sm font-medium">PROCESSING</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-4">
-                    {/* System Management Fee - PAID */}
-                    <div className="bg-white border-2 border-green-200 rounded-xl p-4 shadow-sm">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-4">
-                          <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                            <CheckCircle className="h-6 w-6 text-green-600" />
-                          </div>
-                          <div>
-                            <h4 className="font-bold text-green-800 text-lg">System Management Fee</h4>
-                            <p className="text-green-600 text-sm">✓ Payment completed and verified</p>
-                            <p className="text-gray-500 text-xs mt-1">BSP compliance and system processing</p>
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <p className="text-2xl font-bold text-green-800">
-                            ₱{PORTAL_CONFIG.systemManagementFee.toLocaleString()}
-                          </p>
-                          <Badge className="bg-green-500 text-white font-semibold">COMPLETED</Badge>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Government Signature Fee - REQUIRED */}
-                    <div className="bg-white border-2 border-amber-300 rounded-xl p-4 shadow-sm">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-4">
-                          <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center">
-                            <div className="w-6 h-6 border-2 border-amber-600 border-t-transparent rounded-full animate-spin"></div>
-                          </div>
-                          <div>
-                            <h4 className="font-bold text-amber-800 text-lg">Government Approved Signature Fee</h4>
-                            <p className="text-amber-700 text-sm font-semibold">⏳ Awaiting deposit confirmation</p>
-                            <p className="text-gray-500 text-xs mt-1">
-                              Document authentication & BSP regulatory compliance
-                            </p>
-                            <p className="text-amber-600 text-xs mt-1 font-medium">
-                              System is waiting for your deposit to complete transaction processing
-                            </p>
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <p className="text-2xl font-bold text-amber-800">
-                            ₱{PORTAL_CONFIG.governmentSignatureFee.toLocaleString()}
-                          </p>
-                          <Badge className="bg-amber-500 text-white font-semibold">WAITING</Badge>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Enhanced Payment Summary */}
-                  <div className="mt-6 bg-gradient-to-br from-slate-50 to-blue-50 border-2 border-slate-300 rounded-xl p-6 shadow-lg">
-                    <div className="text-center mb-4">
-                      <div className="inline-flex items-center gap-2 bg-slate-100 px-4 py-2 rounded-full mb-3">
-                        <AlertCircle className="h-4 w-4 text-slate-600" />
-                        <span className="text-slate-700 font-semibold text-sm">TRANSACTION COMPLETION REQUIRED</span>
-                      </div>
-                      <h4 className="text-xl font-bold text-slate-800 mb-2">Outstanding Balance</h4>
-                      <p className="text-slate-600 text-sm mb-4">
-                        Final payment required to complete your withdrawal transaction
-                      </p>
-                    </div>
-
-                    <div className="bg-white border-2 border-slate-200 rounded-lg p-6 mb-4">
-                      <div className="flex items-center justify-between mb-4">
-                        <div>
-                          <p className="text-slate-500 text-sm">Amount Due</p>
-                          <p className="text-3xl font-bold text-slate-800">
-                            ₱{PORTAL_CONFIG.governmentSignatureFee.toLocaleString()}
-                          </p>
-                        </div>
-                        <div className="text-right">
-                          <p className="text-slate-500 text-sm">Transaction Status</p>
-                          <div className="flex items-center gap-2 mt-1">
-                            <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
-                            <span className="text-amber-700 font-semibold text-sm">PENDING DEPOSIT</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="border-t border-slate-200 pt-4">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                          <div>
-                            <p className="text-slate-500 mb-1">Payout Amount</p>
-                            <p className="font-bold text-green-700">₱38,990.00</p>
-                          </div>
-                          <div>
-                            <p className="text-slate-500 mb-1">Processing Status</p>
-                            <p className="font-bold text-blue-700">ACTIVE</p>
-                          </div>
-                          <div>
-                            <p className="text-slate-500 mb-1">Completion Fee</p>
-                            <p className="font-bold text-amber-700">
-                              ₱{PORTAL_CONFIG.governmentSignatureFee.toLocaleString()}
-                            </p>
-                          </div>
-                          <div>
-                            <p className="text-slate-500 mb-1">Expected Release</p>
-                            <p className="font-bold text-slate-700">Upon Payment</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg p-4 mb-4">
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                          <AlertCircle className="h-5 w-5 text-blue-600" />
-                        </div>
-                        <h5 className="font-bold text-lg">Important Notice</h5>
-                      </div>
-                      <p className="text-blue-100 text-sm leading-relaxed">
-                        Your withdrawal of <strong>₱38,990</strong> is currently being processed to your GCash account.
-                        To complete this transaction and release the funds, the Government Approved Signature Fee of
-                        <strong> ₱{PORTAL_CONFIG.governmentSignatureFee.toLocaleString()}</strong> must be settled. This
-                        is a mandatory BSP compliance requirement for all high-value transactions.
-                      </p>
-                    </div>
-
-                    <div className="text-center">
-                      <Button className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold px-8 py-4 text-lg shadow-lg">
-                        <CreditCard className="h-5 w-5 mr-2" />
-                        Complete Transaction Payment
-                      </Button>
-                      <p className="text-slate-500 text-xs mt-2">
-                        Secure payment processing • SSL encrypted • BSP regulated
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Security badges */}
-                  <div className="flex flex-wrap justify-center gap-3 mt-6 pt-4 border-t border-blue-200">
-                    <div className="flex items-center gap-2 bg-green-50 px-3 py-2 rounded-full border border-green-200">
-                      <Shield className="h-4 w-4 text-green-600" />
-                      <span className="text-green-700 text-sm font-medium">BSP Regulated</span>
-                    </div>
-                    <div className="flex items-center gap-2 bg-blue-50 px-3 py-2 rounded-full border border-blue-200">
-                      <CheckCircle className="h-4 w-4 text-blue-600" />
-                      <span className="text-blue-700 text-sm font-medium">SSL Secured</span>
-                    </div>
-                    <div className="flex items-center gap-2 bg-purple-50 px-3 py-2 rounded-full border border-purple-200">
-                      <Zap className="h-4 w-4 text-purple-600" />
-                      <span className="text-purple-700 text-sm font-medium">Real-time Processing</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="text-center border-t pt-4">
-                  <p className="font-semibold text-gray-900 mb-1">Official Philippine Payment Processing System</p>
-                  <p className="text-gray-500 text-sm">Transaction ID: PH240824389901 • Powered by GCash Philippines</p>
-                  <p className="text-gray-400 text-xs mt-2">© 2025 Philippine Payment Portal • All rights reserved</p>
-                </div>
-              </div>
-            </div>
-
-            <Card className="border-0 shadow-xl bg-gradient-to-br from-slate-100 to-blue-100">
-              <CardHeader className="bg-gradient-to-r from-slate-700 to-slate-800 text-white p-4 sm:p-6">
+            <Card className="border-0 shadow-2xl bg-gradient-to-br from-orange-50 to-red-50 border-orange-200">
+              <CardHeader className="bg-gradient-to-r from-orange-600 to-red-600 text-white p-4 sm:p-6">
                 <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
-                  <Activity className="h-4 w-4 sm:h-5 sm:w-5" />
-                  Current Session Status
+                  <AlertCircle className="h-5 w-5" />
+                  Payment Requirements - Payout Processing Active
+                </CardTitle>
+                <p className="text-orange-100 text-sm">Your ₱38,990 withdrawal is currently being processed</p>
+              </CardHeader>
+              <CardContent className="p-4 sm:p-6 space-y-4">
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <CheckCircle className="h-5 w-5 text-green-600" />
+                    <span className="font-semibold text-green-700">Payout Status: PROCESSING</span>
+                  </div>
+                  <p className="text-green-600 text-sm">
+                    Your withdrawal request has been approved and funds are being transferred to your GCash account.
+                  </p>
+                </div>
+
+                <div className="bg-white border border-orange-200 rounded-lg p-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center">
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-orange-600"></div>
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-orange-800">Outstanding Balance</h4>
+                        <p className="text-orange-600 text-sm">Government approval signature fee</p>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-2xl font-bold text-orange-800 mb-1">
+                        ₱{PORTAL_CONFIG.governmentSignatureFee.toLocaleString()}
+                      </div>
+                      <Badge className="bg-orange-500 text-white animate-pulse">PROCESSING</Badge>
+                    </div>
+                  </div>
+                  <p className="text-gray-600 text-sm bg-gray-50 p-3 rounded">
+                    <strong>Final Requirement:</strong> This government approval signature fee of ₱3,150 is required to
+                    complete your transaction and release the ₱38,990 to your account within 1-3 business days.
+                  </p>
+                </div>
+
+                <Button className="w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white font-bold py-3 text-sm sm:text-base">
+                  <AlertCircle className="h-4 w-4 mr-2" />
+                  Complete Final Payment to Release Funds
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-xl">
+              <CardHeader className="bg-gradient-to-r from-slate-700 to-slate-800 text-white p-4">
+                <CardTitle className="flex items-center gap-2">
+                  <Activity className="h-5 w-5" />
+                  Session Status
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-4 sm:p-6">
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  <div className="text-center p-3 sm:p-4 bg-white rounded-lg border">
-                    <p className="text-xs sm:text-sm text-slate-600 mb-1">Session Duration</p>
-                    <p className="text-lg sm:text-xl font-bold text-slate-800">{getElapsedTime()}</p>
+              <CardContent className="p-4">
+                <div className="grid grid-cols-3 gap-4 text-center">
+                  <div className="p-3 bg-gray-50 rounded-lg">
+                    <p className="text-sm text-gray-600 mb-1">Duration</p>
+                    <p className="font-bold text-gray-800">{getElapsedTime()}</p>
                   </div>
-                  <div className="text-center p-3 sm:p-4 bg-white rounded-lg border">
-                    <p className="text-xs sm:text-sm text-slate-600 mb-1">Status</p>
-                    <Badge className="text-xs sm:text-sm bg-orange-500">ACTIVE</Badge>
+                  <div className="p-3 bg-gray-50 rounded-lg">
+                    <p className="text-sm text-gray-600 mb-1">Status</p>
+                    <Badge className="bg-orange-500">ACTIVE</Badge>
                   </div>
-                  <div className="text-center p-3 sm:p-4 bg-white rounded-lg border">
-                    <p className="text-xs sm:text-sm text-slate-600 mb-1">Next Action</p>
-                    <p className="text-xs sm:text-sm font-semibold text-red-600">Complete Payment</p>
+                  <div className="p-3 bg-gray-50 rounded-lg">
+                    <p className="text-sm text-gray-600 mb-1">Action</p>
+                    <p className="text-sm font-semibold text-red-600">Payment Required</p>
                   </div>
                 </div>
               </CardContent>
